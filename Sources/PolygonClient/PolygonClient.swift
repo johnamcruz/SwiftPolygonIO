@@ -8,6 +8,6 @@
 import Foundation
 
 @available(macOS 12.0, *)
-final class PolygonClient: BasePolygonClient {
+final class PolygonClient: BasePolygonClient  {
     
 }
