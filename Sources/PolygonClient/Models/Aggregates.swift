@@ -9,13 +9,13 @@ import Foundation
 
 // MARK: - AggregatesResponse
 public struct AggregatesResponse: Codable, Sendable, Equatable {
-    let adjusted: Bool
-    let nextURL: String
-    let queryCount: Int
-    let requestID: String
-    let results: [AggregatesResult]
-    let resultsCount: Int
-    let status, ticker: String
+    public let adjusted: Bool
+    public let nextURL: String
+    public let queryCount: Int
+    public let requestID: String
+    public let results: [AggregatesResult]
+    public let resultsCount: Int
+    public let status, ticker: String
 
     enum CodingKeys: String, CodingKey {
         case adjusted
@@ -28,14 +28,14 @@ public struct AggregatesResponse: Codable, Sendable, Equatable {
 
 // MARK: - AggregatesResult
 public struct AggregatesResult: Codable, Sendable, Equatable {
-    let close: Double
-    let high: Double
-    let low: Double
-    let transactions: Int
-    let open: Double
-    let timestamp: Date
-    let volume: Int
-    let averagePrice: Double
+    public let close: Double
+    public let high: Double
+    public let low: Double
+    public let transactions: Int
+    public let open: Double
+    public let timestamp: Date
+    public let volume: Int
+    public let averagePrice: Double
     
     enum CodingKeys: String, CodingKey {
         case close = "c"
@@ -51,13 +51,13 @@ public struct AggregatesResult: Codable, Sendable, Equatable {
 
 // MARK: - AggregatesRequest
 public struct AggregatesRequest {
-    let ticker: String
-    let multiplier: Int
-    let timespan: AggregateTimespan
-    let from: Date
-    let to: Date
-    let limit: Int
-    let sort: AggregateSort
+    public let ticker: String
+    public let multiplier: Int
+    public let timespan: AggregateTimespan
+    public let from: Date
+    public let to: Date
+    public let limit: Int
+    public let sort: AggregateSort
     
     public init(ticker: String,
                 multiplier: Int = 1,
