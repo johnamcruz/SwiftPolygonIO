@@ -7,12 +7,12 @@
 
 import Foundation
 
-@available(iOS 15, macOS 12.0, *)
+@available(iOS 17, macOS 14.0, *)
 protocol APIClient {
     func send<Response: Codable>(request: URLRequest) async throws -> Response
 }
 
-@available(iOS 15, macOS 12.0, *)
+@available(iOS 17, macOS 14.0, *)
 class BasePolygonClient: APIClient {
     let baseUrl: URL = URL(string: "https://api.polygon.io")!
     let transport: HttpTransport

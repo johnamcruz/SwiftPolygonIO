@@ -7,7 +7,8 @@
 
 import Foundation
 
-public enum Timespan: String, CaseIterable, Sendable {
+// MARK: - AggregateTimespan
+public enum AggregateTimespan: String, CaseIterable, Sendable {
     case second
     case minute
     case hour
@@ -16,4 +17,18 @@ public enum Timespan: String, CaseIterable, Sendable {
     case month
     case quarter
     case year
+}
+
+// MARK: - AggregateSort
+public enum AggregateSort: String, CaseIterable {
+    case asc
+    case desc
+}
+
+// MARK: - HttpMethod
+public enum HttpMethod: String {
+    case get
+    case put
+    case post
+    case delete
 }

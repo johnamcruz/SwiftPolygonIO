@@ -1,6 +1,7 @@
 import XCTest
 @testable import PolygonClient
 
+@available(iOS 17, macOS 14.0, *)
 final class PolygonClientTests: XCTestCase {
     private let getAggregates = "get-aggregates.json"
     private let getGroupDaily = "get-groupdaily.json"
@@ -12,7 +13,6 @@ final class PolygonClientTests: XCTestCase {
         let client = PolygonClient(transport: transport)
         let request = AggregatesRequest(ticker: "AAPL", multiplier: 1, from: Date(), to: Date())
         let response = try await client.getAggregates(request: request)
-        print(response)
         XCTAssertEqual(expectedResponse, response)
     }
     
@@ -23,7 +23,6 @@ final class PolygonClientTests: XCTestCase {
         let client = PolygonClient(transport: transport)
         
         let response = try await client.getGroupDaily(date: Date())
-        print(response)
         XCTAssertEqual(expectedResponse, response)
     }
 }

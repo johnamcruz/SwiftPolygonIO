@@ -53,8 +53,9 @@ struct AggregatesResult: Codable, Sendable, Equatable {
 struct AggregatesRequest {
     let ticker: String
     var multiplier: Int = 1
-    var timespan: Timespan = .day
+    var timespan: AggregateTimespan = .day
     var from: Date = Date()
     var to: Date = Date()
     var limit: Int = 120
+    var sort: AggregateSort = .desc
 }
