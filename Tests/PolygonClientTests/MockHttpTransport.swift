@@ -13,7 +13,7 @@ enum MockHttpTransportError: Error {
 }
 
 class MockHttpTransport: HttpTransport {
-    var header: [String : String] = [:]
+    var headers: [String : String] = [:]
     var responseValue: Data?
     private let decoder: JSONDecoder = JSONDecoder()
     

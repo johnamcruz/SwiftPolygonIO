@@ -8,6 +8,6 @@
 import Foundation
 
 public protocol HttpTransport {
-    var header: [String: String] { get set }
+    var headers: [String: String] { get set }
     func send<Response: Codable>(request: URLRequest) async throws -> Response
 }
