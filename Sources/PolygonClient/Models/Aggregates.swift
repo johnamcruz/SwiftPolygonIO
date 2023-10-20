@@ -10,7 +10,7 @@ import Foundation
 // MARK: - AggregatesResponse
 public struct AggregatesResponse: Codable, Sendable, Equatable {
     public let adjusted: Bool
-    public let nextURL: String
+    public let nextURL: String?
     public let queryCount: Int
     public let requestID: String
     public let results: [AggregatesResult]
