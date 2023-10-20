@@ -7,7 +7,7 @@
 
 import Foundation
 
-@available(macOS 12.0, *)
+@available(iOS 15, macOS 12.0, *)
 protocol APIClient {
     func send<Response: Codable>(request: URLRequest) async throws -> Response?
 }
