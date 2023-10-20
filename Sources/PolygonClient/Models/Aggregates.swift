@@ -52,10 +52,26 @@ public struct AggregatesResult: Codable, Sendable, Equatable {
 // MARK: - AggregatesRequest
 public struct AggregatesRequest {
     let ticker: String
-    var multiplier: Int = 1
-    var timespan: AggregateTimespan = .day
-    var from: Date = Date()
-    var to: Date = Date()
-    var limit: Int = 120
-    var sort: AggregateSort = .desc
+    let multiplier: Int
+    let timespan: AggregateTimespan
+    let from: Date
+    let to: Date
+    let limit: Int
+    let sort: AggregateSort
+    
+    public init(ticker: String,
+                multiplier: Int = 1,
+                timespan: AggregateTimespan = .day,
+                from: Date = Date(),
+                to: Date = Date(),
+                limit: Int = 5000,
+                sort: AggregateSort = .desc) {
+        self.ticker = ticker
+        self.multiplier = multiplier
+        self.timespan = timespan
+        self.from = from
+        self.to = to
+        self.limit = limit
+        self.sort = sort
+    }
 }
