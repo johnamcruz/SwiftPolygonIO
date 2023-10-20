@@ -8,7 +8,7 @@
 import Foundation
 
 // MARK: - Aggregates
-struct Aggregates: Codable, Sendable {
+struct Aggregates: Codable, Sendable, Equatable {
     let adjusted: Bool
     let nextURL: String
     let queryCount: Int
@@ -27,10 +27,24 @@ struct Aggregates: Codable, Sendable {
 }
 
 // MARK: - Result
-struct AggregatesResult: Codable, Sendable {
-    let c, h, l: Double
-    let n: Int
-    let o: Double
-    let t, v: Int
-    let vw: Double
+struct AggregatesResult: Codable, Sendable, Equatable {
+    let close: Double
+    let high: Double
+    let low: Double
+    let transactions: Int
+    let open: Double
+    let timestamp: Date
+    let volume: Int
+    let averagePrice: Double
+    
+    enum CodingKeys: String, CodingKey {
+        case close = "c"
+        case open = "o"
+        case high = "h"
+        case low = "l"
+        case transactions = "n"
+        case timestamp = "t"
+        case volume = "v"
+        case averagePrice = "vw"
+    }
 }

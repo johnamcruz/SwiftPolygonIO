@@ -8,7 +8,7 @@
 import Foundation
 
 // MARK: - GroupedDaily
-struct GroupedDaily: Codable, Sendable {
+struct GroupedDaily: Codable, Sendable, Equatable {
     let adjusted: Bool
     let queryCount: Int
     let results: [GroupedDailyResult]
@@ -17,7 +17,7 @@ struct GroupedDaily: Codable, Sendable {
 }
 
 // MARK: - Result
-struct GroupedDailyResult: Codable, Sendable {
+struct GroupedDailyResult: Codable, Sendable, Equatable {
     let t: String
     let c, h, l: Double
     let n: Int
