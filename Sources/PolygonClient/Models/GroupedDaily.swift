@@ -9,26 +9,36 @@ import Foundation
 
 // MARK: - GroupedDaily
 public struct GroupedDaily: Codable, Sendable, Equatable {
-    let adjusted: Bool
-    let queryCount: Int
-    let results: [GroupedDailyResult]
-    let resultsCount: Int
-    let status: String
+    public let adjusted: Bool
+    public let queryCount: Int
+    public let results: [GroupedDailyResult]
+    public let resultsCount: Int
+    public let status: String
 }
 
 // MARK: - Result
 public struct GroupedDailyResult: Codable, Sendable, Equatable {
-    let t: String
-    let c, h, l: Double
-    let n: Int
-    let o: Double
-    let resultT: Int
-    let v, vw: Double
+    public let ticker: String
+    public let close: Double
+    public let high: Double
+    public let low: Double
+    public let open: Double
+    public let transactions: Int
+    public let timestamp: Date
+    public let volume: Double
+    public let averagePrice: Double
+    public let otc: Bool?
 
     enum CodingKeys: String, CodingKey {
-        case t = "T"
-        case c, h, l, n, o
-        case resultT = "t"
-        case v, vw
+        case ticker = "T"
+        case close = "c"
+        case high = "h"
+        case low = "l"
+        case open = "o"
+        case transactions = "n"
+        case volume = "v"
+        case timestamp = "t"
+        case averagePrice = "vw"
+        case otc
     }
 }
