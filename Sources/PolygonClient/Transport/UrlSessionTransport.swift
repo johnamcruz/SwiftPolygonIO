@@ -8,13 +8,13 @@
 import Foundation
 
 @available(macOS 12.0, *)
-class UrlSessionTransport: HttpTransport {
+public class UrlSessionTransport: HttpTransport {
     private let session: URLSession
-    internal var headers: [String : String] = [:]
+    public var headers: [String : String] = [:]
     private let decoder: JSONDecoder
     
     
-    init(session: URLSession = URLSession.shared, 
+    public init(session: URLSession = URLSession.shared, 
          headers: [String : String] = [:],
          decoder: JSONDecoder = JSONDecoder()) {
         self.session = session
@@ -22,7 +22,7 @@ class UrlSessionTransport: HttpTransport {
         self.decoder = decoder
     }
     
-    func send<Response: Codable>(request: URLRequest) async throws -> Response {
+    public func send<Response: Codable>(request: URLRequest) async throws -> Response {
         var request = request
         for header in headers {
             request.addValue(header.value, forHTTPHeaderField: header.key)

@@ -13,12 +13,12 @@ enum PolygonClientError: Error {
 }
 
 @available(iOS 17, macOS 14.0, *)
-final class PolygonClient: BasePolygonClient  {
+public final class PolygonClient: BasePolygonClient  {
     private let dateFormatStyle = Date.ISO8601FormatStyle().year().month().day().dateSeparator(.dash)
     
     // /v2/aggs/ticker/{stocksTicker}/range/{multiplier}/{timespan}/{from}/{to}
     // https://api.polygon.io/v2/aggs/ticker/AAPL/range/1/minute/2023-01-09/2023-01-09?adjusted=true&sort=asc&limit=120
-    func getAggregates(request: AggregatesRequest) async throws -> AggregatesResponse {
+    public func getAggregates(request: AggregatesRequest) async throws -> AggregatesResponse {
         guard var component = URLComponents(url: self.baseUrl, resolvingAgainstBaseURL: true) else {
             throw PolygonClientError.urlParsingError
         }
@@ -40,7 +40,7 @@ final class PolygonClient: BasePolygonClient  {
     
     // /v2/aggs/grouped/locale/us/market/stocks/{date}
     // https://api.polygon.io/v2/aggs/grouped/locale/us/market/stocks/2023-01-09?adjusted=true
-    func getGroupDaily(date: Date) async throws -> GroupedDaily {
+    public func getGroupDaily(date: Date) async throws -> GroupedDaily {
         guard var component = URLComponents(url: self.baseUrl, resolvingAgainstBaseURL: true) else {
             throw PolygonClientError.urlParsingError
         }

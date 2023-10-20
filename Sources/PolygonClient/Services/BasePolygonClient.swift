@@ -13,15 +13,15 @@ protocol APIClient {
 }
 
 @available(iOS 17, macOS 14.0, *)
-class BasePolygonClient: APIClient {
+public class BasePolygonClient: APIClient {
     let baseUrl: URL = URL(string: "https://api.polygon.io")!
     let transport: HttpTransport
     
-    init(transport: HttpTransport) {
+    public init(transport: HttpTransport) {
         self.transport = transport
     }
     
-    func send<Response: Codable>(request: URLRequest) async throws -> Response {
+    public func send<Response: Codable>(request: URLRequest) async throws -> Response {
         try await self.transport.send(request: request) as Response
     }
 }
