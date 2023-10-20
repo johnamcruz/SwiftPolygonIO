@@ -18,17 +18,27 @@ public struct GroupedDaily: Codable, Sendable, Equatable {
 
 // MARK: - Result
 public struct GroupedDailyResult: Codable, Sendable, Equatable {
-    public let t: String
-    public let c, h, l: Double
-    public let n: Int
-    public let o: Double
-    public let resultT: Int
-    public let v, vw: Double
+    public let ticker: String
+    public let close: Double
+    public let high: Double
+    public let low: Double
+    public let open: Double
+    public let transactions: Int
+    public let timestamp: Date
+    public let volume: Double
+    public let averagePrice: Double
+    public let otc: Bool?
 
     enum CodingKeys: String, CodingKey {
-        case t = "T"
-        case c, h, l, n, o
-        case resultT = "t"
-        case v, vw
+        case ticker = "T"
+        case close = "c"
+        case high = "h"
+        case low = "l"
+        case open = "o"
+        case transactions = "n"
+        case volume = "v"
+        case timestamp = "t"
+        case averagePrice = "vw"
+        case otc
     }
 }
