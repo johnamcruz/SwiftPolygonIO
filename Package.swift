@@ -18,6 +18,7 @@ let package = Package(
             name: "PolygonClient"),
         .testTarget(
             name: "PolygonClientTests",
-            dependencies: ["PolygonClient"]),
+            dependencies: ["PolygonClient"],
+            resources: [.process("Resources")]),
     ]
 )
