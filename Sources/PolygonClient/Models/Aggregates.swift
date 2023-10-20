@@ -7,8 +7,8 @@
 
 import Foundation
 
-// MARK: - Aggregates
-struct Aggregates: Codable, Sendable, Equatable {
+// MARK: - AggregatesResponse
+struct AggregatesResponse: Codable, Sendable, Equatable {
     let adjusted: Bool
     let nextURL: String
     let queryCount: Int
@@ -26,7 +26,7 @@ struct Aggregates: Codable, Sendable, Equatable {
     }
 }
 
-// MARK: - Result
+// MARK: - AggregatesResult
 struct AggregatesResult: Codable, Sendable, Equatable {
     let close: Double
     let high: Double
@@ -47,4 +47,14 @@ struct AggregatesResult: Codable, Sendable, Equatable {
         case volume = "v"
         case averagePrice = "vw"
     }
+}
+
+// MARK: - AggregatesRequest
+struct AggregatesRequest {
+    let ticker: String
+    var multiplier: Int = 1
+    var timespan: Timespan = .day
+    var from: Date = Date()
+    var to: Date = Date()
+    var limit: Int = 120
 }

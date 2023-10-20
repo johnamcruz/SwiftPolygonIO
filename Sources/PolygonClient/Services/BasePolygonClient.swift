@@ -14,11 +14,10 @@ protocol APIClient {
 
 @available(macOS 12.0, *)
 class BasePolygonClient: APIClient {
-    let baseUrl: URL
+    let baseUrl: URL = URL(string: "https://api.polygon.io")!
     let transport: HttpTransport
     
-    init(baseUrl: URL, transport: HttpTransport) {
-        self.baseUrl = baseUrl
+    init(transport: HttpTransport) {
         self.transport = transport
     }
     
