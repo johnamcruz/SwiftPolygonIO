@@ -22,6 +22,14 @@ public class UrlSessionTransport: HttpTransport {
         self.decoder = decoder
     }
     
+    public init(session: URLSession = URLSession.shared, apiKey: String) {
+        self.headers = ["Authorization":"Bearer \(apiKey)"]
+        let decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = .millisecondsSince1970
+        self.decoder = decoder
+        self.session = session
+    }
+    
     public func send<Response: Codable>(request: URLRequest) async throws -> Response {
         var request = request
         for header in headers {
