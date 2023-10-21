@@ -25,7 +25,7 @@ public struct TickerResult: Codable, Equatable {
     public let ticker, name, market, locale: String
     public let primaryExchange, type: String
     public let active: Bool
-    public let currencyName, cik, compositeFigi, shareClassFigi: String
+    public let currencyName, cik, compositeFigi, shareClassFigi: String?
     public let lastUpdatedUTC: String //todo: replace to date
 
     enum CodingKeys: String, CodingKey {
