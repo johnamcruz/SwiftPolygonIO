@@ -91,7 +91,10 @@ public final class PolygonClient: BasePolygonClient  {
         guard var component = URLComponents(url: self.baseUrl, resolvingAgainstBaseURL: true) else {
             throw PolygonClientError.urlParsingError
         }
-        component.path = "/v1/indicators/sma/\(ticker)?timespan=\(timespan.rawValue)"
+        component.path = "/v1/indicators/sma/\(ticker)"
+        component.queryItems = [
+            URLQueryItem(name: "timespan", value: timespan.rawValue)
+        ]
         guard let updatedUrl = component.url else {
             throw PolygonClientError.urlBuildingError
         }
