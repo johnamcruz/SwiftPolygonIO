@@ -54,4 +54,50 @@ public final class PolygonClient: BasePolygonClient  {
         request.httpMethod = HttpMethod.get.rawValue.uppercased()
         return try await send(request: URLRequest(url: updatedUrl))
     }
+    
+    //https://api.polygon.io/v3/reference/tickers?ticker=AAPL&market=stocks&active=true&apiKey=7XimeqW7DG_ozmE90Li_z90Nrc_pB6kn
+    public func getTicker(ticker: String) async throws -> Ticker {
+        guard var component = URLComponents(url: self.baseUrl, resolvingAgainstBaseURL: true) else {
+            throw PolygonClientError.urlParsingError
+        }
+        component.path = "/v3/reference/tickers?ticker=\(ticker)&market=stocks&active=true"
+        guard let updatedUrl = component.url else {
+            throw PolygonClientError.urlBuildingError
+        }
+        print(updatedUrl.absoluteString)
+        var request = URLRequest(url: updatedUrl)
+        request.httpMethod = HttpMethod.get.rawValue.uppercased()
+        let decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = .iso8601
+        transport.decoder = decoder
+        return try await send(request: URLRequest(url: updatedUrl))
+    }
+    
+    public func getTickerDetails(ticker: String) async throws -> TickerDetails {
+        guard var component = URLComponents(url: self.baseUrl, resolvingAgainstBaseURL: true) else {
+            throw PolygonClientError.urlParsingError
+        }
+        component.path = "/v3/reference/tickers/\(ticker)"
+        guard let updatedUrl = component.url else {
+            throw PolygonClientError.urlBuildingError
+        }
+        print(updatedUrl.absoluteString)
+        var request = URLRequest(url: updatedUrl)
+        request.httpMethod = HttpMethod.get.rawValue.uppercased()
+        return try await send(request: URLRequest(url: updatedUrl))
+    }
+    
+    public func getSimpleMovingAverage(ticker: String, timespan: AggregateTimespan) async throws -> SimpleMovingAverage {
+        guard var component = URLComponents(url: self.baseUrl, resolvingAgainstBaseURL: true) else {
+            throw PolygonClientError.urlParsingError
+        }
+        component.path = "/v1/indicators/sma/\(ticker)?timespan=\(timespan.rawValue)"
+        guard let updatedUrl = component.url else {
+            throw PolygonClientError.urlBuildingError
+        }
+        print(updatedUrl.absoluteString)
+        var request = URLRequest(url: updatedUrl)
+        request.httpMethod = HttpMethod.get.rawValue.uppercased()
+        return try await send(request: URLRequest(url: updatedUrl))
+    }
 }

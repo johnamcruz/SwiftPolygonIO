@@ -9,5 +9,6 @@ import Foundation
 
 public protocol HttpTransport {
     var headers: [String: String] { get set }
+    var decoder: JSONDecoder { get set }
     func send<Response: Codable>(request: URLRequest) async throws -> Response
 }

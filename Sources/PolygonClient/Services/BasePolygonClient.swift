@@ -15,7 +15,7 @@ protocol APIClient {
 @available(iOS 17, macOS 14.0, *)
 public class BasePolygonClient: APIClient {
     let baseUrl: URL = URL(string: "https://api.polygon.io")!
-    let transport: HttpTransport
+    var transport: HttpTransport
     
     public init(transport: HttpTransport) {
         self.transport = transport
