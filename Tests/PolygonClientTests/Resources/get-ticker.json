@@ -1,21 +1,68 @@
 {
-    "results": [
-        {
-            "ticker": "AAPL",
-            "name": "Apple Inc.",
-            "market": "stocks",
-            "locale": "us",
-            "primary_exchange": "XNAS",
-            "type": "CS",
-            "active": true,
-            "currency_name": "usd",
-            "cik": "0000320193",
-            "composite_figi": "BBG000B9XRY4",
-            "share_class_figi": "BBG001S5N8V8",
-            "last_updated_utc": "2023-10-20T00:00:00Z"
-        }
-    ],
+    "results": [{
+        "ticker": "GOOG",
+        "name": "Alphabet Inc. Class C Capital Stock",
+        "market": "stocks",
+        "locale": "us",
+        "primary_exchange": "XNAS",
+        "type": "CS",
+        "active": true,
+        "currency_name": "usd",
+        "cik": "0001652044",
+        "composite_figi": "BBG009S3NB30",
+        "share_class_figi": "BBG009S3NB21",
+        "last_updated_utc": "2023-10-20T00:00:00Z"
+    }, {
+        "ticker": "GOOGL",
+        "name": "Alphabet Inc. Class A Common Stock",
+        "market": "stocks",
+        "locale": "us",
+        "primary_exchange": "XNAS",
+        "type": "CS",
+        "active": true,
+        "currency_name": "usd",
+        "cik": "0001652044",
+        "composite_figi": "BBG009S39JX6",
+        "share_class_figi": "BBG009S39JY5",
+        "last_updated_utc": "2023-10-20T00:00:00Z"
+    }, {
+        "ticker": "GGLS",
+        "name": "Direxion Daily GOOGL Bear 1X Shares",
+        "market": "stocks",
+        "locale": "us",
+        "primary_exchange": "XNAS",
+        "type": "ETS",
+        "active": true,
+        "currency_name": "usd",
+        "composite_figi": "BBG019HFVSR2",
+        "share_class_figi": "BBG019HFVTM5",
+        "last_updated_utc": "2023-10-20T00:00:00Z"
+    }, {
+        "ticker": "GOOY",
+        "name": "YieldMax GOOGL Option Income Strategy ETF",
+        "market": "stocks",
+        "locale": "us",
+        "primary_exchange": "ARCX",
+        "type": "ETS",
+        "active": true,
+        "currency_name": "usd",
+        "composite_figi": "BBG01HP10WH2",
+        "share_class_figi": "BBG01HP10XF2",
+        "last_updated_utc": "2023-10-20T00:00:00Z"
+    }, {
+        "ticker": "GGLL",
+        "name": "Direxion Daily GOOGL Bull 1.5X Shares",
+        "market": "stocks",
+        "locale": "us",
+        "primary_exchange": "XNAS",
+        "type": "ETS",
+        "active": true,
+        "currency_name": "usd",
+        "composite_figi": "BBG019HFT425",
+        "share_class_figi": "BBG019HFT4X1",
+        "last_updated_utc": "2023-10-20T00:00:00Z"
+    }],
     "status": "OK",
-    "request_id": "2934aa513a0fa932efb259dc788bc954",
-    "count": 1
+    "request_id": "0f51beb336abc413563ac986e38e23da",
+    "count": 5
 }
