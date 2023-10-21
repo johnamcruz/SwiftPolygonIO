@@ -35,7 +35,7 @@ final class PolygonClientTests: XCTestCase {
         transport.responseValue = try JSONEncoder().encode(expectedResponse)
         let client = PolygonClient(transport: transport)
         
-        let response = try await client.getTicker(ticker: "AAPL")
+        let response = try await client.getTicker(query: "AAPL", order: .asc)
         XCTAssertEqual(expectedResponse, response)
     }
     
