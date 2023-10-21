@@ -5,6 +5,8 @@ import XCTest
 final class PolygonClientTests: XCTestCase {
     private let getAggregates = "get-aggregates.json"
     private let getGroupDaily = "get-groupdaily.json"
+    private let getTicker = "get-ticker.json"
+    private let getTickerDetails = "get-ticker-details.json"
     
     func testGetAggregates() async throws {
         let transport = MockHttpTransport()
@@ -23,6 +25,26 @@ final class PolygonClientTests: XCTestCase {
         let client = PolygonClient(transport: transport)
         
         let response = try await client.getGroupDaily(date: Date())
+        XCTAssertEqual(expectedResponse, response)
+    }
+    
+    func testGetTicker() async throws {
+        let transport = MockHttpTransport()
+        let expectedResponse = Bundle.module.decode(Ticker.self, from: getTicker)
+        transport.responseValue = try JSONEncoder().encode(expectedResponse)
+        let client = PolygonClient(transport: transport)
+        
+        let response = try await client.getTicker(ticker: "AAPL")
+        XCTAssertEqual(expectedResponse, response)
+    }
+    
+    func testGetTickerDetails() async throws {
+        let transport = MockHttpTransport()
+        let expectedResponse = Bundle.module.decode(TickerDetails.self, from: getTickerDetails)
+        transport.responseValue = try JSONEncoder().encode(expectedResponse)
+        let client = PolygonClient(transport: transport)
+        
+        let response = try await client.getTickerDetails(ticker: "AAPL")
         XCTAssertEqual(expectedResponse, response)
     }
 }
