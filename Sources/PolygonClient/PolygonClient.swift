@@ -67,9 +67,6 @@ public final class PolygonClient: BasePolygonClient  {
         print(updatedUrl.absoluteString)
         var request = URLRequest(url: updatedUrl)
         request.httpMethod = HttpMethod.get.rawValue.uppercased()
-        let decoder = JSONDecoder()
-        decoder.dateDecodingStrategy = .iso8601
-        transport.decoder = decoder
         return try await send(request: URLRequest(url: updatedUrl))
     }
     
