@@ -15,7 +15,7 @@ enum MockHttpTransportError: Error {
 class MockHttpTransport: HttpTransport {
     var headers: [String : String] = [:]
     var responseValue: Data?
-    private let decoder: JSONDecoder = JSONDecoder()
+    internal var decoder: JSONDecoder = JSONDecoder()
     
     func send<Response: Codable>(request: URLRequest) async throws -> Response {
         guard let responseValue = responseValue else {

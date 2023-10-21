@@ -1,0 +1,52 @@
+{
+    "results": {
+        "underlying": {
+            "url": "https://api.polygon.io/v2/aggs/ticker/AAPL/range/1/day/1063281600000/1697911947633?limit=235&sort=desc"
+        },
+        "values": [
+            {
+                "timestamp": 1697774400000,
+                "value": 177.55639999999988
+            },
+            {
+                "timestamp": 1697688000000,
+                "value": 177.65819999999988
+            },
+            {
+                "timestamp": 1697601600000,
+                "value": 177.7127999999999
+            },
+            {
+                "timestamp": 1697515200000,
+                "value": 177.7919999999999
+            },
+            {
+                "timestamp": 1697428800000,
+                "value": 177.8259999999999
+            },
+            {
+                "timestamp": 1697169600000,
+                "value": 177.89139999999992
+            },
+            {
+                "timestamp": 1697083200000,
+                "value": 178.1377999999999
+            },
+            {
+                "timestamp": 1696996800000,
+                "value": 178.37519999999992
+            },
+            {
+                "timestamp": 1696910400000,
+                "value": 178.69129999999993
+            },
+            {
+                "timestamp": 1696824000000,
+                "value": 179.05249999999995
+            }
+        ]
+    },
+    "status": "OK",
+    "request_id": "ecc297695371c62ce78b3495116dfe7a",
+    "next_url": "https://api.polygon.io/v1/indicators/sma/AAPL?cursor=YWRqdXN0ZWQ9dHJ1ZSZhcD0lN0IlMjJ2JTIyJTNBMCUyQyUyMm8lMjIlM0EwJTJDJTIyYyUyMiUzQTE3Ny40OSUyQyUyMmglMjIlM0EwJTJDJTIybCUyMiUzQTAlMkMlMjJ0JTIyJTNBMTY5NjU2NDgwMDAwMCU3RCZhcz0mZXhwYW5kX3VuZGVybHlpbmc9ZmFsc2UmbGltaXQ9MTAmb3JkZXI9ZGVzYyZzZXJpZXNfdHlwZT1jbG9zZSZ0aW1lc3Bhbj1kYXkmdGltZXN0YW1wLmx0PTE2OTY4MjQwMDAwMDAmd2luZG93PTUw"
+}

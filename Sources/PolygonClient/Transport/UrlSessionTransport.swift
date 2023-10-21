@@ -11,7 +11,7 @@ import Foundation
 public class UrlSessionTransport: HttpTransport {
     private let session: URLSession
     public var headers: [String : String] = [:]
-    private let decoder: JSONDecoder
+    public var decoder: JSONDecoder
     
     
     public init(session: URLSession = URLSession.shared, 
