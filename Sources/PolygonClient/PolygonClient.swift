@@ -56,11 +56,18 @@ public final class PolygonClient: BasePolygonClient  {
     }
     
     //https://api.polygon.io/v3/reference/tickers?ticker=AAPL&market=stocks&active=true&apiKey=7XimeqW7DG_ozmE90Li_z90Nrc_pB6kn
-    public func getTicker(ticker: String) async throws -> Ticker {
+    public func getTicker(ticker: String = "", query: String, order: AggregateSort) async throws -> Ticker {
         guard var component = URLComponents(url: self.baseUrl, resolvingAgainstBaseURL: true) else {
             throw PolygonClientError.urlParsingError
         }
-        component.path = "/v3/reference/tickers?ticker=\(ticker)&market=stocks&active=true"
+        component.path = "/v3/reference/tickers"
+        component.queryItems = [
+            URLQueryItem(name: "ticker", value: ticker),
+            URLQueryItem(name: "market", value: "stocks"),
+            URLQueryItem(name: "active", value: "true"),
+            URLQueryItem(name: "search", value: query),
+            URLQueryItem(name: "order", value: order.rawValue),
+        ]
         guard let updatedUrl = component.url else {
             throw PolygonClientError.urlBuildingError
         }
