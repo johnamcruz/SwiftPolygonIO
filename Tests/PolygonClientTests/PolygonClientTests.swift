@@ -8,6 +8,7 @@ final class PolygonClientTests: XCTestCase {
     private let getTicker = "get-ticker.json"
     private let getTickerDetails = "get-ticker-details.json"
     private let getSimpleMovingAverage = "get-sma.json"
+    private let getDailyOpenClose = "get-daily-openclose.json"
     
     func testGetAggregates() async throws {
         let transport = MockHttpTransport()
@@ -55,7 +56,17 @@ final class PolygonClientTests: XCTestCase {
         transport.responseValue = try JSONEncoder().encode(expectedResponse)
         let client = PolygonClient(transport: transport)
         
-        let response = try await client.getSimpleMovingAverage(ticker: "AAPL", timespan: .day)
+        let response = try await client.getSimpleMovingAverage(ticker: "AAPL", date: Date(), timespan: .day)
+        XCTAssertEqual(expectedResponse, response)
+    }
+    
+    func testGetDailyOpenClose() async throws {
+        let transport = MockHttpTransport()
+        let expectedResponse = Bundle.module.decode(DailyOpenClose.self, from: getDailyOpenClose)
+        transport.responseValue = try JSONEncoder().encode(expectedResponse)
+        let client = PolygonClient(transport: transport)
+        
+        let response = try await client.getDailyOpenClose(ticker: "AAPL", date: Date())
         XCTAssertEqual(expectedResponse, response)
     }
 }

@@ -1,0 +1,12 @@
+{
+    "status": "OK",
+    "from": "2023-10-20",
+    "symbol": "AAPL",
+    "open": 175.31,
+    "high": 175.42,
+    "low": 172.64,
+    "close": 172.88,
+    "volume": 64494077,
+    "afterHours": 172.78,
+    "preMarket": 174.95
+}
