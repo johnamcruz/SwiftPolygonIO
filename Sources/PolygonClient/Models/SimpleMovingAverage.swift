@@ -11,7 +11,7 @@ import Foundation
 public struct SimpleMovingAverage: Codable, Equatable {
     public let results: SimpleMovingAverageResults
     public let status, requestID: String
-    public let nextURL: String
+    public let nextURL: String?
 
     enum CodingKeys: String, CodingKey {
         case results, status
