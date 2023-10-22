@@ -8,8 +8,8 @@
 import Foundation
 
 // MARK: - SimpleMovingAverage
-public struct SimpleMovingAverage: Codable, Equatable {
-    public let results: SimpleMovingAverageResults
+public struct SimpleMovingAverage: Codable, Equatable, Sendable {
+    public let results: Results
     public let status, requestID: String
     public let nextURL: String?
 
@@ -21,18 +21,18 @@ public struct SimpleMovingAverage: Codable, Equatable {
 }
 
 // MARK: - Results
-public struct SimpleMovingAverageResults: Codable, Equatable {
+public struct Results: Codable, Equatable, Sendable {
     public let underlying: UnderlyingUrl
-    public let values: [SimpleMovingAverageValue]
+    public let values: [Value]
 }
 
 // MARK: - UnderlyingUrl
-public struct UnderlyingUrl: Codable,Equatable {
+public struct UnderlyingUrl: Codable,Equatable, Sendable {
     public let url: String
 }
 
-// MARK: - SimpleMovingAverageValue
-public struct SimpleMovingAverageValue: Codable, Equatable {
+// MARK: - Value
+public struct Value: Codable, Equatable,Sendable {
     public let timestamp: Date
     public let value: Double
 }
