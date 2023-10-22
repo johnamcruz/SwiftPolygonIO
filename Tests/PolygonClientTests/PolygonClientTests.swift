@@ -91,4 +91,78 @@ final class PolygonClientTests: XCTestCase {
         let response = try await client.getDailyOpenClose(ticker: "AAPL", date: Date())
         XCTAssertEqual(expectedResponse, response)
     }
+    
+    func testGetTickerUrl() throws {
+        let transport = MockHttpTransport()
+        let client = PolygonClient(transport: transport)
+        
+        if let url = try client.getTickerUrl(order: .asc) {
+            XCTAssertEqual(url.absoluteString, 
+                           "https://api.polygon.io/v3/reference/tickers?ticker&market=stocks&active=true&search&order=asc")
+        } else {
+            XCTFail("Failed to parse data")
+        }
+        
+        if let url = try client.getTickerUrl(query: "AAPLE", order: .asc) {
+            XCTAssertEqual(url.absoluteString,
+                           "https://api.polygon.io/v3/reference/tickers?ticker&market=stocks&active=true&search=AAPLE&order=asc")
+        } else {
+            XCTFail("Failed to parse data")
+        }
+        
+        if let url = try client.getTickerUrl(ticker: "AAPL", query: "AAPLE", order: .asc) {
+            XCTAssertEqual(url.absoluteString,
+                           "https://api.polygon.io/v3/reference/tickers?ticker&market=stocks&active=true&search=AAPLE&order=asc")
+        } else {
+            XCTFail("Failed to parse data")
+        }
+    }
+    
+    func testGetSimpleMovingAverageUrl() throws {
+        let transport = MockHttpTransport()
+        let client = PolygonClient(transport: transport)
+        
+        if let url = try client.getSimpleMovingAverageUrl(ticker: "AAPL") {
+            XCTAssertEqual(url.absoluteString,
+                           "https://api.polygon.io/v1/indicators/sma/AAPL?timespan=day&window=50")
+        } else {
+            XCTFail("Failed to parse data")
+        }
+    }
+    
+    func testGetExponentialMovingAverage() throws {
+        let transport = MockHttpTransport()
+        let client = PolygonClient(transport: transport)
+        
+        if let url = try client.getExponentialMovingAverageUrl(ticker: "AAPL") {
+            XCTAssertEqual(url.absoluteString,
+                           "https://api.polygon.io/v1/indicators/ema/AAPL?timespan=day&window=50")
+        } else {
+            XCTFail("Failed to parse data")
+        }
+    }
+    
+    func testGetRelativeStrengthIndex() throws {
+        let transport = MockHttpTransport()
+        let client = PolygonClient(transport: transport)
+        
+        if let url = try client.getRelativeStrengthIndexUrl(ticker: "AAPL") {
+            XCTAssertEqual(url.absoluteString,
+                           "https://api.polygon.io/v1/indicators/rsi/AAPL?timespan=day&window=50")
+        } else {
+            XCTFail("Failed to parse data")
+        }
+    }
+    
+    func testGetAggregatesUrl() throws {
+        let transport = MockHttpTransport()
+        let client = PolygonClient(transport: transport)
+        
+        if let url = try client.getAggregatesUrl(request: AggregatesRequest(ticker: "AAPL")) {
+            XCTAssertEqual(url.absoluteString,
+                           "https://api.polygon.io/v2/aggs/ticker/AAPL/range/1/day/2023-10-22/2023-10-22?sort=desc&limit=5000")
+        } else {
+            XCTFail("Failed to parse data")
+        }
+    }
 }
