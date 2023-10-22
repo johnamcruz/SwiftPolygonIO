@@ -9,6 +9,7 @@ final class PolygonClientTests: XCTestCase {
     private let getTickerDetails = "get-ticker-details.json"
     private let getSimpleMovingAverage = "get-sma.json"
     private let getExponentialMovingAverage = "get-ema.json"
+    private let getRelativeStrength = "get-rsi.json"
     private let getDailyOpenClose = "get-daily-openclose.json"
     
     func testGetAggregates() async throws {
@@ -68,6 +69,16 @@ final class PolygonClientTests: XCTestCase {
         let client = PolygonClient(transport: transport)
         
         let response = try await client.getExponentialMovingAverage(ticker: "AAPL", date: Date(), timespan: .day)
+        XCTAssertEqual(expectedResponse, response)
+    }
+    
+    func testGetRelativeStrengthIndex() async throws {
+        let transport = MockHttpTransport()
+        let expectedResponse = Bundle.module.decode(RelativeStrengthIndex.self, from: getRelativeStrength)
+        transport.responseValue = try JSONEncoder().encode(expectedResponse)
+        let client = PolygonClient(transport: transport)
+        
+        let response = try await client.getRelativeStrengthIndex(ticker: "AAPL", date: Date(), timespan: .day)
         XCTAssertEqual(expectedResponse, response)
     }
     

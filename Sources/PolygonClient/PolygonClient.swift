@@ -94,7 +94,8 @@ public final class PolygonClient: BasePolygonClient  {
     public func getSimpleMovingAverage(ticker: String, 
                                        date: Date? = nil,
                                        timespan: AggregateTimespan = .day,
-                                       window: Int = 50) async throws -> SimpleMovingAverage {
+                                       window: Int = 50,
+                                       cursor: String? = nil) async throws -> SimpleMovingAverage {
         guard var component = URLComponents(url: self.baseUrl, resolvingAgainstBaseURL: true) else {
             throw PolygonClientError.urlParsingError
         }
@@ -103,7 +104,8 @@ public final class PolygonClient: BasePolygonClient  {
         component.queryItems = [
             URLQueryItem(name: "timestamp", value: date),
             URLQueryItem(name: "timespan", value: timespan.rawValue),
-            URLQueryItem(name: "window", value: String(window))
+            URLQueryItem(name: "window", value: String(window)),
+            URLQueryItem(name: "cursor", value: cursor)
         ]
         guard let updatedUrl = component.url else {
             throw PolygonClientError.urlBuildingError
@@ -117,7 +119,8 @@ public final class PolygonClient: BasePolygonClient  {
     public func getExponentialMovingAverage(ticker: String,
                                             date: Date? = nil,
                                             timespan: AggregateTimespan = .day,
-                                            window: Int = 50) async throws -> ExponentialMovingAverage {
+                                            window: Int = 50,
+                                            cursor: String? = nil) async throws -> ExponentialMovingAverage {
         guard var component = URLComponents(url: self.baseUrl, resolvingAgainstBaseURL: true) else {
             throw PolygonClientError.urlParsingError
         }
@@ -126,7 +129,33 @@ public final class PolygonClient: BasePolygonClient  {
         component.queryItems = [
             URLQueryItem(name: "timestamp", value: date),
             URLQueryItem(name: "timespan", value: timespan.rawValue),
-            URLQueryItem(name: "window", value: String(window))
+            URLQueryItem(name: "window", value: String(window)),
+            URLQueryItem(name: "cursor", value: cursor)
+        ]
+        guard let updatedUrl = component.url else {
+            throw PolygonClientError.urlBuildingError
+        }
+        print(updatedUrl.absoluteString)
+        var request = URLRequest(url: updatedUrl)
+        request.httpMethod = HttpMethod.get.rawValue.uppercased()
+        return try await send(request: URLRequest(url: updatedUrl))
+    }
+    
+    public func getRelativeStrengthIndex(ticker: String,
+                                         date: Date? = nil,
+                                         timespan: AggregateTimespan = .day,
+                                         window: Int = 50,
+                                         cursor: String? = nil) async throws -> RelativeStrengthIndex {
+        guard var component = URLComponents(url: self.baseUrl, resolvingAgainstBaseURL: true) else {
+            throw PolygonClientError.urlParsingError
+        }
+        let date = date?.formatted(dateFormatStyle)
+        component.path = "/v1/indicators/ema/\(ticker)"
+        component.queryItems = [
+            URLQueryItem(name: "timestamp", value: date),
+            URLQueryItem(name: "timespan", value: timespan.rawValue),
+            URLQueryItem(name: "window", value: String(window)),
+            URLQueryItem(name: "cursor", value: cursor)
         ]
         guard let updatedUrl = component.url else {
             throw PolygonClientError.urlBuildingError
