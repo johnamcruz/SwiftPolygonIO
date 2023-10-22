@@ -67,7 +67,8 @@ public final class PolygonClient: BasePolygonClient  {
             URLQueryItem(name: "active", value: "true"),
             URLQueryItem(name: "search", value: query),
             URLQueryItem(name: "order", value: order.rawValue),
-        ]
+        ].compactMap{ $0 }
+        
         guard let updatedUrl = component.url else {
             throw PolygonClientError.urlBuildingError
         }
@@ -100,13 +101,15 @@ public final class PolygonClient: BasePolygonClient  {
             throw PolygonClientError.urlParsingError
         }
         let date = date?.formatted(dateFormatStyle)
+        
         component.path = "/v1/indicators/sma/\(ticker)"
         component.queryItems = [
             URLQueryItem(name: "timestamp", value: date),
             URLQueryItem(name: "timespan", value: timespan.rawValue),
             URLQueryItem(name: "window", value: String(window)),
             URLQueryItem(name: "cursor", value: cursor)
-        ]
+        ].compactMap{ $0 }
+        
         guard let updatedUrl = component.url else {
             throw PolygonClientError.urlBuildingError
         }
@@ -125,13 +128,15 @@ public final class PolygonClient: BasePolygonClient  {
             throw PolygonClientError.urlParsingError
         }
         let date = date?.formatted(dateFormatStyle)
+        
         component.path = "/v1/indicators/ema/\(ticker)"
         component.queryItems = [
             URLQueryItem(name: "timestamp", value: date),
             URLQueryItem(name: "timespan", value: timespan.rawValue),
             URLQueryItem(name: "window", value: String(window)),
             URLQueryItem(name: "cursor", value: cursor)
-        ]
+        ].compactMap{ $0 }
+        
         guard let updatedUrl = component.url else {
             throw PolygonClientError.urlBuildingError
         }
@@ -150,13 +155,15 @@ public final class PolygonClient: BasePolygonClient  {
             throw PolygonClientError.urlParsingError
         }
         let date = date?.formatted(dateFormatStyle)
+        
         component.path = "/v1/indicators/ema/\(ticker)"
         component.queryItems = [
             URLQueryItem(name: "timestamp", value: date),
             URLQueryItem(name: "timespan", value: timespan.rawValue),
             URLQueryItem(name: "window", value: String(window)),
             URLQueryItem(name: "cursor", value: cursor)
-        ]
+        ].compactMap{ $0 }
+        
         guard let updatedUrl = component.url else {
             throw PolygonClientError.urlBuildingError
         }
