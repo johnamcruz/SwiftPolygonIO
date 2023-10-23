@@ -25,7 +25,7 @@ public final class PolygonClient: BasePolygonClient  {
         print(updatedUrl.absoluteString)
         var request = URLRequest(url: updatedUrl)
         request.httpMethod = HttpMethod.get.rawValue.uppercased()
-        return try await send(request: URLRequest(url: updatedUrl))
+        return try await send(request: request)
     }
     
     // /v2/aggs/grouped/locale/us/market/stocks/{date}
@@ -42,7 +42,7 @@ public final class PolygonClient: BasePolygonClient  {
         print(updatedUrl.absoluteString)
         var request = URLRequest(url: updatedUrl)
         request.httpMethod = HttpMethod.get.rawValue.uppercased()
-        return try await send(request: URLRequest(url: updatedUrl))
+        return try await send(request: request)
     }
     
     //https://api.polygon.io/v3/reference/tickers?ticker=AAPL&market=stocks&active=true
@@ -53,7 +53,7 @@ public final class PolygonClient: BasePolygonClient  {
         print(updatedUrl.absoluteString)
         var request = URLRequest(url: updatedUrl)
         request.httpMethod = HttpMethod.get.rawValue.uppercased()
-        return try await send(request: URLRequest(url: updatedUrl))
+        return try await send(request: request)
     }
     
     public func getTickerDetails(ticker: String) async throws -> TickerDetails {
@@ -67,7 +67,7 @@ public final class PolygonClient: BasePolygonClient  {
         print(updatedUrl.absoluteString)
         var request = URLRequest(url: updatedUrl)
         request.httpMethod = HttpMethod.get.rawValue.uppercased()
-        return try await send(request: URLRequest(url: updatedUrl))
+        return try await send(request: request)
     }
     
     public func getSimpleMovingAverage(ticker: String, 
@@ -86,7 +86,7 @@ public final class PolygonClient: BasePolygonClient  {
         print(updatedUrl.absoluteString)
         var request = URLRequest(url: updatedUrl)
         request.httpMethod = HttpMethod.get.rawValue.uppercased()
-        return try await send(request: URLRequest(url: updatedUrl))
+        return try await send(request: request)
     }
     
     public func getExponentialMovingAverage(ticker: String,
@@ -105,7 +105,7 @@ public final class PolygonClient: BasePolygonClient  {
         print(updatedUrl.absoluteString)
         var request = URLRequest(url: updatedUrl)
         request.httpMethod = HttpMethod.get.rawValue.uppercased()
-        return try await send(request: URLRequest(url: updatedUrl))
+        return try await send(request: request)
     }
     
     public func getRelativeStrengthIndex(ticker: String,
@@ -124,7 +124,7 @@ public final class PolygonClient: BasePolygonClient  {
         print(updatedUrl.absoluteString)
         var request = URLRequest(url: updatedUrl)
         request.httpMethod = HttpMethod.get.rawValue.uppercased()
-        return try await send(request: URLRequest(url: updatedUrl))
+        return try await send(request: request)
     }
     
     public func getDailyOpenClose(ticker: String, date: Date) async throws -> DailyOpenClose {
@@ -139,7 +139,7 @@ public final class PolygonClient: BasePolygonClient  {
         print(updatedUrl.absoluteString)
         var request = URLRequest(url: updatedUrl)
         request.httpMethod = HttpMethod.get.rawValue.uppercased()
-        return try await send(request: URLRequest(url: updatedUrl))
+        return try await send(request: request)
     }
     
     func getAggregatesUrl(request: AggregatesRequest) throws -> URL? {

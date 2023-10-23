@@ -11,6 +11,7 @@ final class PolygonClientTests: XCTestCase {
     private let getExponentialMovingAverage = "get-ema.json"
     private let getRelativeStrength = "get-rsi.json"
     private let getDailyOpenClose = "get-daily-openclose.json"
+    private let dateFormatStyle = Date.ISO8601FormatStyle().year().month().day().dateSeparator(.dash)
     
     func testGetAggregates() async throws {
         let transport = MockHttpTransport()
@@ -97,22 +98,22 @@ final class PolygonClientTests: XCTestCase {
         let client = PolygonClient(transport: transport)
         
         if let url = try client.getTickerUrl(order: .asc) {
-            XCTAssertEqual(url.absoluteString, 
-                           "https://api.polygon.io/v3/reference/tickers?ticker&market=stocks&active=true&search&order=asc")
+            XCTAssertEqual(url.absoluteString,
+                           "https://api.polygon.io/v3/reference/tickers?market=stocks&active=true&order=asc")
         } else {
             XCTFail("Failed to parse data")
         }
         
         if let url = try client.getTickerUrl(query: "AAPLE", order: .asc) {
             XCTAssertEqual(url.absoluteString,
-                           "https://api.polygon.io/v3/reference/tickers?ticker&market=stocks&active=true&search=AAPLE&order=asc")
+                           "https://api.polygon.io/v3/reference/tickers?market=stocks&active=true&search=AAPLE&order=asc")
         } else {
             XCTFail("Failed to parse data")
         }
         
         if let url = try client.getTickerUrl(ticker: "AAPL", query: "AAPLE", order: .asc) {
             XCTAssertEqual(url.absoluteString,
-                           "https://api.polygon.io/v3/reference/tickers?ticker&market=stocks&active=true&search=AAPLE&order=asc")
+                           "https://api.polygon.io/v3/reference/tickers?ticker=AAPL&market=stocks&active=true&search=AAPLE&order=asc")
         } else {
             XCTFail("Failed to parse data")
         }
@@ -158,9 +159,10 @@ final class PolygonClientTests: XCTestCase {
         let transport = MockHttpTransport()
         let client = PolygonClient(transport: transport)
         
-        if let url = try client.getAggregatesUrl(request: AggregatesRequest(ticker: "AAPL")) {
+        let date = Date().formatted(dateFormatStyle)
+        if let url = try client.getAggregatesUrl(request: AggregatesRequest(ticker: "AAPL", from: Date(), to: Date())) {
             XCTAssertEqual(url.absoluteString,
-                           "https://api.polygon.io/v2/aggs/ticker/AAPL/range/1/day/2023-10-22/2023-10-22?sort=desc&limit=5000")
+                           "https://api.polygon.io/v2/aggs/ticker/AAPL/range/1/day/\(date)/\(date)?sort=desc&limit=5000")
         } else {
             XCTFail("Failed to parse data")
         }
