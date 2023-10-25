@@ -84,7 +84,7 @@ public final class PolygonClient: BasePolygonClient  {
             throw PolygonClientError.urlBuildingError
         }
         print(updatedUrl.absoluteString)
-        var cursor: String? = nil
+        var hasCursor = false
         var request = URLRequest(url: updatedUrl)
         request.httpMethod = HttpMethod.get.rawValue.uppercased()
         var values: [Value] = []
@@ -94,8 +94,9 @@ public final class PolygonClient: BasePolygonClient  {
             values.append(contentsOf: response.results.values)
             if let nextUrl = response.nextURL, let newUrl = URL(string: nextUrl) {
                 request = URLRequest(url: newUrl)
+                hasCursor = true
             }
-        } while cursor != nil
+        } while hasCursor
        
         return values
     }
