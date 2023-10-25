@@ -60,7 +60,7 @@ final class PolygonClientTests: XCTestCase {
         let client = PolygonClient(transport: transport)
         
         let response = try await client.getSimpleMovingAverage(ticker: "AAPL", date: Date(), timespan: .day)
-        XCTAssertEqual(expectedResponse, response)
+        XCTAssertEqual(expectedResponse.results.values, response)
     }
     
     func testGetExponentialMovingAverage() async throws {

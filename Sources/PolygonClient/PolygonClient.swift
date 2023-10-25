@@ -74,7 +74,7 @@ public final class PolygonClient: BasePolygonClient  {
                                        date: Date? = nil,
                                        timespan: AggregateTimespan = .day,
                                        window: Int = 50,
-                                       cursor: String? = nil) async throws -> SimpleMovingAverage {
+                                       cursor: String? = nil) async throws -> [Value] {
         
         guard let updatedUrl = try getSimpleMovingAverageUrl(ticker: ticker,
                                                          date: date,
@@ -84,9 +84,20 @@ public final class PolygonClient: BasePolygonClient  {
             throw PolygonClientError.urlBuildingError
         }
         print(updatedUrl.absoluteString)
+        var cursor: String? = nil
         var request = URLRequest(url: updatedUrl)
         request.httpMethod = HttpMethod.get.rawValue.uppercased()
-        return try await send(request: request)
+        var values: [Value] = []
+        
+        repeat {
+            let response = try await send(request: request) as SimpleMovingAverage
+            values.append(contentsOf: response.results.values)
+            if let nextUrl = response.nextURL, let newUrl = URL(string: nextUrl) {
+                request = URLRequest(url: newUrl)
+            }
+        } while cursor != nil
+       
+        return values
     }
     
     public func getExponentialMovingAverage(ticker: String,
