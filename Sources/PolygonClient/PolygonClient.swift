@@ -95,6 +95,8 @@ public final class PolygonClient: BasePolygonClient  {
             if let nextUrl = response.nextURL, let newUrl = URL(string: nextUrl) {
                 request = URLRequest(url: newUrl)
                 hasCursor = true
+            } else {
+                hasCursor = false
             }
         } while hasCursor
        
